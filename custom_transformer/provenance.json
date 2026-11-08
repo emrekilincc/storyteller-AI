@@ -1,0 +1,31 @@
+{
+  "source_archive": "DERİN ÖĞRENME PROJE.zip",
+  "archive_directory": "DERİN ÖĞRENME PROJE/transformer__hikaye/",
+  "files": {
+    "model.py": {
+      "bytes": 2163,
+      "sha256": "8b5154206eaf193518bfcbf994c0ef936d6ca05a567fb37d6e7cc58b74fe5641"
+    },
+    "best_transformer_checkpoint.pth": {
+      "bytes": 103039828,
+      "sha256": "2c0f150e3f71dfeac7353d71c8d1d6f359bf86a7d462b31da90e44e5ad111e01"
+    },
+    "tokenizer.pickle": {
+      "bytes": 1612483,
+      "sha256": "476e522e509b2987e09665a96752fedae54f0112735c0f43020b6f44cc4f3cb6"
+    },
+    "vocab.json": {
+      "bytes": 433874,
+      "sha256": "af370b606edd76b16892d79306d158c65532448244570cf9390656c9202f030f"
+    },
+    "datasets/merged_transformer_dataset.csv": {
+      "bytes": 10048656,
+      "sha256": "467794fe4080a8771707b0838f77738d2322dde0da99587f1d461a2595150704"
+    },
+    "loss_log_transformer.csv": {
+      "bytes": 1211,
+      "sha256": "548a31cf45fddd9b6cf3bb6b6958890c9d2406f129741d31052aee3a4c279390"
+    }
+  },
+  "note": "Checkpoint, model definition, tokenizer, vocabulary, dataset and metrics copied unchanged. Training outputs redirected to runs/."
+}

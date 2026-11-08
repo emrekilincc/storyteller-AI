@@ -1,0 +1,8 @@
+-r requirements.txt
+tensorflow==2.19.0
+pandas
+numpy>=1.26,<2.2
+scikit-learn
+matplotlib
+tqdm
+datasets

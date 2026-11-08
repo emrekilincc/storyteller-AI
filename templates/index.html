@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duygulu Hikaye Oluşturucu</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f6ff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background-color: #4b6cb7;
+      color: white;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      margin-top: 40px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 90%;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4b6cb7;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #3a56a1;
+    }
+
+    .output {
+      margin-top: 25px;
+      padding: 15px;
+      background: #eef2fb;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Duygulu Hikaye Oluşturucu</h1>
+  </header>
+  <main>
+    <label for="emotion">Duygu Seçin:</label>
+    <select id="emotion">
+      <option value="happy">Mutlu</option>
+      <option value="sad">Üzgün</option>
+      <option value="fear">Korkmuş</option>
+    </select>
+
+    <label for="start">Başlangıç Cümlesi (Türkçe):</label>
+    <input type="text" id="start" placeholder="Bir cümle yazın...">
+
+    <button id="generate" onclick="generateStory()">Hikaye Oluştur</button>
+
+    <div class="output" id="output" role="status" aria-live="polite"></div>
+  </main>
+
+  <script>
+    async function generateStory() {
+      const emotion = document.getElementById('emotion').value;
+      const start = document.getElementById('start').value;
+      const outputDiv = document.getElementById('output');
+
+      if (!start.trim()) {
+        outputDiv.textContent = "Lütfen bir başlangıç cümlesi yazın.";
+        return;
+      }
+      const button = document.getElementById('generate');
+      button.disabled = true;
+      outputDiv.textContent = "İşleniyor...";
+      try {
+
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ emotion: emotion, start: start })
+      });
+
+      if (!response.ok) throw new Error("Hikâye üretilemedi. Lütfen tekrar deneyin.");
+      const data = await response.json();
+      outputDiv.textContent = data.story;
+      } catch (error) {
+        outputDiv.textContent = error.message;
+      } finally {
+        button.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
