@@ -1,2 +1,7 @@
 *.pth binary
 *.pickle binary
+# Keep archived source bytes consistent with provenance.json hashes.
+custom_transformer/model.py -text
+custom_transformer/vocab.json -text
+custom_transformer/datasets/merged_transformer_dataset.csv -text
+custom_transformer/loss_log_transformer.csv -text
